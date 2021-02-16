@@ -5,5 +5,5 @@ RUN apt install -y cmake pkg-config libssl-dev git build-essential clang libclan
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN rustup toolchain install nightly-2020-09-28 && rustup default nightly-2020-09-28 && rustup override set nightly-2020-09-28 && rustup target add wasm32-unknown-unknown --toolchain nightly-2020-09-28
-COPY ./polkadex-aura-node/ /polkadex-aura-node/
+COPY ../polkadex-aura-node/ /polkadex-aura-node/
 RUN cd /polkadex-aura-node &&  cargo build --release
