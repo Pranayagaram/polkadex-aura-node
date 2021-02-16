@@ -6,20 +6,37 @@ phases:
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI=876703040586.dkr.ecr.ap-southeast-1.amazonaws.com/pd-cicd
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=$CODEBUILD_BUILD_NUMBER
   build:
     commands:
+      - echo updating th ip address with intra domains
+      - sed -i 's/54.176.87.85/balic-dev.polkadex.intra/g' ./node/src/chain_spec.rs
+      - sed -i 's/52.76.105.188/vbob-dev.polkadex.intra/g' ./node/src/chain_spec.rs
+      - sed -i 's/18.198.113.243/vcharli-dev.polkadex.intra/g' ./node/src/chain_spec.rs
+      - echo +++++++++++++++++++++++++++++++++++++++++##**
+      - cat ./node/src/chain_spec.rs
+      - echo +++++++++++++++++++++++++++++++++++++++++##**
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -f ./scripts/aws-scripts/Dockerfile -t $REPOSITORY_URI:$IMAGE_TAG .
+      - docker build -f . /scripts/aws-scripts/Dockerfile -t $REPOSITORY_URI:$IMAGE_TAG .
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"pd-cicd","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - cat imagedefinitions.json 
+      - printf '[{"name":"balice-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-balice-dev.json
+      - printf '[{"name":"vbob-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-vbob-dev.json
+      - printf '[{"name":"vcharli-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-vcharli-dev.json
+      - cat imagedefinitions-balice-dev.json
+      - cat imagedefinitions-vbob-dev.json
+      - cat imagedefinitions-vcharli-dev.json
+      
 artifacts:
-    files: imagedefinitions.json
+    secondary-artifacts:
+        artifact1:
+         files: imagedefinitions-balice-dev.json
+        artifact2:
+         files: imagedefinitions-vbob-dev.json
+        artifact3:
+         files: imagedefinitions-vcharli-dev.json
