@@ -33,10 +33,9 @@ phases:
       - cat imagedefinitions-vcharli-dev.json
       
 artifacts:
-    secondary-artifacts:
+    files: imagedefinitions-balice-dev.json
+    secondary-artifacts:     
         artifact1:
-         files: imagedefinitions-balice-dev.json
-        artifact2:
          files: imagedefinitions-vbob-dev.json
-        artifact3:
+        artifact2:
          files: imagedefinitions-vcharli-dev.json
