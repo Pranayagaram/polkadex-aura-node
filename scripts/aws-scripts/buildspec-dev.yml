@@ -18,7 +18,7 @@ phases:
       - echo +++++++++++++++++++++++++++++++++++++++++##**
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -f . /scripts/aws-scripts/Dockerfile -t $REPOSITORY_URI:$IMAGE_TAG .
+      - docker build -f ./scripts/aws-scripts/Dockerfile -t $REPOSITORY_URI:$IMAGE_TAG .
   post_build:
     commands:
       - echo Build completed on `date`
