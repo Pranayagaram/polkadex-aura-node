@@ -36,4 +36,4 @@ artifacts:
     files: 
        - imagedefinitions-balice-dev.json
        - imagedefinitions-vbob-dev.json
-       - imagedefinitions-vcharlie-dev
+       - imagedefinitions-vcharlie-dev.json
