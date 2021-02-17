@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM 876703040586.dkr.ecr.ap-southeast-1.amazonaws.com/pd-cicd:ubuntu-16.04
 RUN apt-get -y update
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 RUN apt install -y cmake pkg-config libssl-dev git build-essential clang libclang-dev curl
