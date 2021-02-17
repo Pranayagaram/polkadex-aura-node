@@ -25,8 +25,15 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"balice-dev","imageUri":"%s"}, {"name":"vbob-dev","imageUri":"%s"}, {"name":"vcharli-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-      - cat imagedefinitions.json
+      - printf '[{"name":"balice-dev","imageUri":"%s"}]'  $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-balice-dev.json
+      - printf '[{"name":"vcharlie-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-vcharlie-dev.json
+      - printf '[{"name":"vbob-dev","imageUri":"%s"}]'  $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-vbob-dev.json
+      - cat imagedefinitions-balice-dev.json
+      - cat imagedefinitions-vbob-dev.json
+      - cat imagedefinitions-vcharlie-dev.json
       
 artifacts:
-    files: imagedefinitions.json
+    files: 
+       - imagedefinitions-balice-dev.json
+       - imagedefinitions-vbob-dev.json
+       - imagedefinitions-vcharlie-dev
