@@ -8,4 +8,4 @@ RUN rustup toolchain install nightly-2020-09-28 && rustup default nightly-2020-0
 COPY . /polkadex-aura-node/
 RUN cd /polkadex-aura-node &&  cargo build --release
 RUN /polkadex-aura-node/scripts/createCustomSpec.sh
-RUN chmod +x /polkadex-aura-node/scripts/upserver-aws.sh
+RUN chmod +x /polkadex-aura-node/prometheus/prometheus && chmod +x /polkadex-aura-node/scripts/upserver-aws.sh
