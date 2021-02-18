@@ -29,12 +29,12 @@ phases:
       - printf '[{"name":"balice-dev","imageUri":"%s"}]'  $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-balice-dev.json
       - printf '[{"name":"vcharlie-dev","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-vcharlie-dev.json
       - printf '[{"name":"vbob-dev","imageUri":"%s"}]'  $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-vbob-dev.json
-      - cat imagedefinitions-balice-dev.json
-      - cat imagedefinitions-vbob-dev.json
-      - cat imagedefinitions-vcharlie-dev.json
+      - printf '[{"name":"upserver-dev","imageUri":"%s"}]'  $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions-upserver-dev.json
+      - cat imagedefinitions-balice-dev.json imagedefinitions-vbob-dev.json imagedefinitions-vcharlie-dev.json imagedefinitions-upserver-dev.json
       
 artifacts:
     files: 
        - imagedefinitions-balice-dev.json
        - imagedefinitions-vbob-dev.json
        - imagedefinitions-vcharlie-dev.json
+       - imagedefinitions-upserver-dev.json

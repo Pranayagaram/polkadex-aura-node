@@ -7,3 +7,4 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 RUN rustup toolchain install nightly-2020-09-28 && rustup default nightly-2020-09-28 && rustup override set nightly-2020-09-28 && rustup target add wasm32-unknown-unknown --toolchain nightly-2020-09-28
 COPY . /polkadex-aura-node/
 RUN cd /polkadex-aura-node &&  cargo build --release
+RUN /polkadex-aura-node/scripts/createCustomSpec.sh
